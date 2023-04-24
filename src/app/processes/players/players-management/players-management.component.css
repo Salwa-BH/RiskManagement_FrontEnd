@@ -1,0 +1,37 @@
+div.TableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+table {
+    border-collapse:separate;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align:center;
+    border-bottom: 1px solid #ddd;
+  }
+  #edition{
+    
+    text-align: right;
+
+    }
+    #deletion{
+  text-align: left;
+
+    }
+
+  .btn-group{
+   
+    float:right;
+}
+  @media (max-width: 450px) {
+    table {
+      width: 500px;
+      display: block;
+      overflow: scroll;
+    }
+   
+
+  }

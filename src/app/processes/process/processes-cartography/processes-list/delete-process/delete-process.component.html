@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Creation d'un nouveau processus</h1>
+<mat-dialog-content>
+    <p>Etes vous sur de vouloir supprimer le process : "{{ data.deletedProcess.title }}" ?</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onCloseDialog()">Annuler</button>
+    <button mat-raised-button (click)="onDeleteProcess()" cdkFocusInitial>Confirmer Suppression</button>
+</div>

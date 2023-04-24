@@ -1,0 +1,19 @@
+.btn-group{
+   
+    float:right;
+}
+h1{
+    color: black;
+    text-align: center;
+    size: 20px;
+}
+
+@media (max-width: 250px) {
+    table {
+      width: 250px;
+      display: block;
+      overflow: scroll;
+    }
+   
+
+  }

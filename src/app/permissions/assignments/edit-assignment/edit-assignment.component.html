@@ -1,0 +1,45 @@
+<h1 mat-dialog-title *ngIf="!data.role && type.match('role')">Create a new role</h1>
+<h1 mat-dialog-title *ngIf="data.role && type.match('role')">Edit Role</h1>
+<h1 mat-dialog-title *ngIf="!data.profile && type.match('profile')">Create a new profile</h1>
+<h1 mat-dialog-title *ngIf="data.profile && type.match('profile')">Edit Profile</h1>
+<h1 mat-dialog-title *ngIf="!data.group && type.match('group')">Create a new group</h1>
+<h1 mat-dialog-title *ngIf="data.group && type.match('group')">Edit group</h1>
+
+
+<div [formGroup]="form">
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="name" appearance="fill">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="description" formControlName="description" appearance="fill">
+        </mat-form-field>
+
+        <!-- Parent if we are in role -->
+        <div *ngIf="type.match('role')">
+
+            <mat-form-field >
+                <mat-label>Parent</mat-label>
+                <mat-select [(value)]="selectedParent" formControlName="parent">
+                    <mat-option value="0" >No parent (Root)</mat-option>
+                    <ng-container *ngFor="let role of roles">
+                        <mat-option type="submit"  *ngIf="role.id !== data?.role?.id"  [value]="role.id">{{ role?.name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <mat-checkbox formControlName="confirmation">Demand confirmation from superior to do actions</mat-checkbox>
+
+        </div>
+        
+    </div>
+    <div>
+        <button class="btn btn-secondary ml-2" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-success ml-2" (click)="create()" *ngIf="create_type; else editButton">
+            <em class="fas fa-user-plus"></em> Create </button>
+        <ng-template #editButton>
+            <button class="btn btn-success ml-2" (click)="edit()">
+                <em class="fas fa-user-plus"></em> Edit </button>
+        </ng-template>
+    </div>
+</div>

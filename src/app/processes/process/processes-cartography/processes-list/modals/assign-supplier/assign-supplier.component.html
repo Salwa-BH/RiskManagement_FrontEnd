@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="example-container col">
+        <h2>Available Players</h2>
+
+        <div id="playersList" cdkDropList #playersList="cdkDropList" [cdkDropListData]="availablePlayers"
+            [cdkDropListConnectedTo]="[suppliersList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let player of availablePlayers" [id]="player.id" cdkDrag>{{player.long_name}}</div>
+        </div>
+    </div>
+
+    <div class="example-container col">
+        <h2>Suppliers</h2>
+
+        <div id="suppliersList" cdkDropList #suppliersList="cdkDropList" [cdkDropListData]="suppliers"
+            [cdkDropListConnectedTo]="[playersList]" class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let supplier of suppliers" [id]="supplier.id"cdkDrag>{{supplier.playerDetails.name}}</div>
+        </div>
+    </div>
+
+</div>

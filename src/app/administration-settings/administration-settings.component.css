@@ -1,0 +1,84 @@
+/* .header {
+    padding: 60px;
+    margin: 5%;
+    text-align: center;
+    background: #26faba;
+    color: white;
+    font-size: 30px;
+  }
+
+  .panel{
+    border: 1px solid rgb(50, 51, 50);
+    padding: 15px;
+    border-radius: 5%;
+
+  }
+  .panel-heading{
+      color: hsl(340, 100%, 57%);
+      padding: 5px;
+  }
+
+  .box {
+    position: relative;
+    top: 30%;
+    left: 50%;
+    right: 20%;
+    transform: translate(-50%, -50%);
+    
+  }
+  
+  .box select {
+    background-color: hsl(340, 100%, 57%);
+    color: white;
+    padding: 12px;
+    width: 260px;
+    border: none;
+    font-size: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+  }
+  
+  .box::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+  }
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  } */
+
+  .title{
+    margin: 70px;
+  }
+  .container{
+   
+    justify-content: center;
+    align-items: center;
+  }
+  .card-content{
+  
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   width:900px;
+   
+     }

@@ -1,0 +1,95 @@
+
+
+<nav class="container">
+    <a  (click)="showRoles()">Show roles</a>
+    <a  (click)="showProfiles()">Show profiles</a>
+    <a  (click)="showGroups()">Show groups</a>
+    <div id="indicator"></div>
+</nav>
+<hr>
+<br>
+
+<mat-card class="mat-card">
+
+<h1> {{type}}s </h1>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <!-- IF ROLE, IT HAS ANOTHER COLUMN COMPARED TO THE OTHER TWO -->
+            <ng-container *ngIf="type.match('Role')">
+                <th scope="col" class="col-4">Name</th>
+                <th scope="col" class="col-4">Description</th>
+                <th scope="col" class="col-2">Confirmation</th>
+            </ng-container>
+            <!-- ELSE  -->
+            <ng-container *ngIf="type.match('Profile') || type.match('Group')">
+                <th scope="col" class="col-5">Name</th>
+                <th scope="col" class="col-5">Description</th>
+            </ng-container>
+            <th scope="col" class="col-2">Edition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- shows roles -->
+        <ng-container *ngIf="type.match('Role')">
+            <tr class="row" *ngFor="let role of roles | paginate: { itemsPerPage:5, currentPage: p }">
+                <td class="col-4">{{ role?.name}}</td>
+                <td class="col-4 description">{{ role?.description }}</td>
+
+                <td class="col-2">
+                    <mat-checkbox [checked]="role?.confirmation" (click)="changeConfirmation(role?.id)"></mat-checkbox>
+                </td>
+
+                <td class="col-2">
+                    <button [id]="role?.id" class="btn btn-primary btn-sm" (click)="edit($event)">
+                        <i [id]="role?.id" class="fas fa-pen fa-sm"></i></button>
+                    <button [id]="role?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)">
+                        <i [id]="role?.id" class="fas fa-trash fa-sm"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+
+        <!-- shows profiles -->
+        <ng-container *ngIf="type.match('Profile')">
+            <tr class="row" *ngFor="let profile of profiles | paginate: { itemsPerPage:5, currentPage: p }">
+                <td class="col-5">{{ profile?.name}}</td>
+                <td class="col-5 description">{{ profile?.description }}</td>
+                <td class="col-2">
+                    <button [id]="profile?.id" class="btn btn-primary btn-sm" (click)="edit($event)">
+                        <i [id]="profile?.id" class="fas fa-pen fa-sm"></i></button>
+                    <button [id]="profile?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)">
+                        <i [id]="profile?.id" class="fas fa-trash fa-sm"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+
+        <!-- shows groups -->
+        <ng-container *ngIf="type.match('Group')">
+            <tr class="row" *ngFor="let group of groups | paginate: { itemsPerPage:5, currentPage: p }">
+                <td class="col-5">{{ group?.name}}</td>
+                <td class="col-5 description">{{ group?.description }}</td>
+                <td class="col-2">
+                    <button [id]="group?.id" class="btn btn-primary btn-sm" (click)="edit($event)">
+                        <i [id]="group?.id" class="fas fa-pen fa-sm"></i></button>
+                    <button [id]="group?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)">
+                        <i [id]="group?.id" class="fas fa-trash fa-sm"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+
+    </tbody>
+</table>
+<pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+
+</mat-card>
+
+<br>
+
+<div class="text-center">
+    <button (click)="add()"  class="myButton">Create new {{type}}</button>
+    <button (click)="assignUsers()" class="myButton">Add Users to {{type}}</button>
+    <button *ngIf="type.match('Profile')" (click)="assignGroups()" class="myButton">Assign group to profile</button>
+</div>

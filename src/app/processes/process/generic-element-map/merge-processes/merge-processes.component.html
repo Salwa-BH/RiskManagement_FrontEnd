@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Merge processes</h1>
+<mat-dialog-content [formGroup]="processMergeForm" (ngSubmit)="onProcessMerge()">
+
+    <mat-form-field>
+        <mat-label>Second process</mat-label>
+        <mat-select formControlName="secondProcess">
+            <mat-option *ngFor="let process of processes" [value]="process?.id">
+                {{ process?.title }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-label>New process's name</mat-label> -->
+    <mat-radio-group formControlName="processName">
+
+        <mat-radio-button (click)="switchCreationState(false)">Choose name of an existing process</mat-radio-button>
+
+        <mat-radio-group class="ml-5 d-block" formControlName="processName" *ngIf="newProcessCreation === false">
+            <mat-radio-button class="d-block" value="1">First Process</mat-radio-button>
+            <mat-radio-button class="d-block" value="2">Second Process</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-button (click)="switchCreationState(true)" value="2">Create a process with a new name
+        </mat-radio-button>
+
+        <input formControlName="processName" class="ml-5 w-50" matInput placeholder="New Process's Name"
+            *ngIf="newProcessCreation === true">
+
+    </mat-radio-group>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions class="row">
+
+    <button mat-button class="btn btn-light ml-2 mr-2 w-25" (click)="onCloseDialog()">Cancel</button>
+
+    <button mat-raised-button class="btn btn-primary w-25" (click)="onProcessMerge()">Confirm</button>
+
+</div>

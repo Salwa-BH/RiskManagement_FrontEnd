@@ -1,0 +1,49 @@
+<div>
+    
+    <br>
+    <mat-card>
+    <table class="table">
+        <thead>
+            <tr class="row">
+                <th scope="col" class="col-4">Name</th>
+                <th scope="col" class="col-4">Default type</th>
+                <th scope="col" class="col-4">Edition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row" *ngFor="let type of processTypes | paginate: { itemsPerPage:4, currentPage: p }">
+    
+                <!-- Process type's name -->
+                <td class="col-4">{{ type?.name}}</td>
+    
+                <!-- Default type check button -->
+                <td class="col-4">
+                    <mat-checkbox [checked]="type?.is_default" (click)="makeDefaultType(type?.id)" disabled>{{ type?.id }}
+                    </mat-checkbox>
+                </td>
+    
+                <!-- Editing buttons -->
+                <td class="col-2 col-sm-1">
+                    <button [id]="type?.id" class="btn btn-primary btn-sm" (click)="edit($event)"style="background-color: #2d545e;">
+                        <em [id]="type?.id" class="fas fa-pen fa-sm" ></em></button>
+                </td>
+                <td class="col-2 col-sm-1">    
+                        <button [id]="type?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)" style="background-color: #CC9752;">
+                        <em [id]="type?.id" class="fas fa-trash fa-sm"></em>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+    
+    </mat-card>
+    
+    <br>
+        
+    
+    <div class="text-center">
+        <button class="btn btn-success" (click)="add()"  style="background-color: #CC9752;">Create new type</button>
+    </div>
+    
+    </div>

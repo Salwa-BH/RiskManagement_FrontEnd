@@ -1,0 +1,18 @@
+nav {
+  width: 84vw;
+}
+.navbar .container .collapse .navbar-nav .nav-item a {
+  color: #2d545e;
+  padding: 4px;
+  font-size: 17px;
+}
+.navbar .container .collapse .navbar-nav .nav-item i {
+  color: #2d545e;
+} 
+.navbar .container .collapse .navbar-nav .nav-item a:hover{
+  color: #000000;
+}
+i{
+  padding: 5px;
+}
+

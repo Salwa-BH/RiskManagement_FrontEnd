@@ -1,0 +1,69 @@
+<h1 mat-dialog-title *ngIf="!data.editedProcess">Add a new element</h1>
+<h1 mat-dialog-title *ngIf="data.editedProcess">Update this element</h1>
+<mat-dialog-content [formGroup]="processForm">
+
+       <!-- Form with choises for the two first inputs  -->
+    
+        <mat-form-field>
+        <mat-label>Type of the element</mat-label>
+        <mat-select formControlName="process_type" readonly>
+            <mat-option disabled>None</mat-option>
+            <mat-option *ngFor="let type of processTypes" [value]="type?.id" >{{ type.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Attachment of the element</mat-label>
+        <input type="text" matInput formControlName="parent" [matAutocomplete]="processesList" >
+        
+        <mat-hint align="start"><strong>Leave empty for root processes</strong> </mat-hint>
+
+        <mat-autocomplete #processesList="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let process of filteredParents | async" [value]="process">
+                {{ process?.title }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Name of the element</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Description of the element</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Aim of the element</mat-label>
+        <textarea matInput formControlName="aim"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Start date</mat-label>
+        <input formControlName="start_date" matInput [matDatepicker]="picker1">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>End date</mat-label>
+        <input formControlName="end_date" matInput [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onCloseDialog()" class="btn btn-outline-secondary">Cancel</button>
+
+    <button mat-raised-button (click)="onEditProcess()" cdkFocusInitial class="btn btn-primary ml-1"
+        *ngIf="data.editedProcess">Save</button>
+
+    <button mat-raised-button (click)="onCreateProcess()" cdkFocusInitial class="btn btn-primary ml-1"
+        *ngIf="!data.editedProcess">Save</button>
+</div>

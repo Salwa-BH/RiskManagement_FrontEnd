@@ -1,0 +1,54 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.card-title {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 24px;
+  width: 100%;
+  min-height: 60px;
+  color: white;
+}
+
+.card-style {
+  width: 48% !important;
+}
+
+#map-legend {
+  position: absolute;
+  bottom: 15px;
+  width: 50%;
+}
+
+.status-key {
+  width: 10%;
+}
+
+.scrolling-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 70vh;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  #map-legend {
+    position: absolute;
+    bottom: 15px;
+    width:80%;
+  }
+ #card-title,.card-body{
+  font-size: 12px;
+ }
+ #modify,#view{
+  font-size: 10px;
+ }
+}

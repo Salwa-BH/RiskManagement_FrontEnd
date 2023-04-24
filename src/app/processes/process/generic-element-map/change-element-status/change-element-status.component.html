@@ -1,0 +1,19 @@
+<h3>Update element status : "{{data?.process.title}}"</h3>
+<div [formGroup]="changeStatusForm">
+    <mat-form-field>
+        <mat-label>parent du processus</mat-label>
+        <input matInput formControlName="status" id="status" [matAutocomplete]="statusList" >
+        <mat-autocomplete #statusList="matAutocomplete" [displayWith]="displayFn3">
+    <mat-option *ngFor="let status of filteredstatus | async" [value]="status">
+        {{ status?.name}}
+    </mat-option>
+</mat-autocomplete>
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCloseDialog({
+            newStatus: null,
+            isSuccess: false
+          })" class="btn btn-outline-secondary">Cancel</button>
+        <button mat-raised-button (click)="onValidate()" cdkFocusInitial class="btn btn-primary ml-1">Change status</button>
+    </div>
+</div>

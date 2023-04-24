@@ -1,0 +1,12 @@
+<h1 mat-dialog-title *ngIf="type.match('role')">Delete Role</h1>
+<h1 mat-dialog-title *ngIf="type.match('profile')">Delete Profile</h1>
+<h1 mat-dialog-title *ngIf="type.match('group')">Delete Group</h1>
+<mat-dialog-content>
+    <p *ngIf="type.match('role')">Are you sure about deleting : "{{ data?.role?.name }}" ?</p>
+    <p *ngIf="type.match('profile')">Are you sure about deleting : "{{ data?.profile?.name }}" ?</p>
+    <p *ngIf="type.match('group')">Are you sure about deleting : "{{ data?.group?.name }}" ?</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button class="btn btn-secondary w-25 ml-5" (click)="onCloseDialog()">Cancel</button>
+    <button class="btn btn-danger w-25 ml-2" (click)="onConfirmDeletion()" cdkFocusInitial>Delete</button>
+</div>

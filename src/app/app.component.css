@@ -1,0 +1,17 @@
+
+body {
+    height: 100%;
+
+}
+
+#sidebar {
+    background-attachment: fixed;
+}
+
+.centered {
+    display: flex;
+  align-items: center;
+  justify-content:center;
+   width: 90%;
+    background-color: rgb(11, 223, 152);
+  }

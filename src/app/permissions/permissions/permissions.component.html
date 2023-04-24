@@ -1,0 +1,91 @@
+<br>
+
+<mat-card>
+
+<h1> Assign permissions </h1>
+<div class="form"  [formGroup]="form">
+<!-- Choose Profile to assign permissions to -->
+<div>
+    <p>Choose profile to assign permissions to: </p>
+    <mat-form-field>
+        <input  matInput placeholder="Profile"  formControlName="profile" [matAutocomplete]="ProfilesList" >
+        <mat-autocomplete #ProfilesList="matAutocomplete" [displayWith]="displayProfile" >
+            <mat-option *ngFor="let profile of filteredProfiles | async" [value]="profile">
+                {{ profile?.name }}
+            </mat-option>
+        </mat-autocomplete>
+
+    </mat-form-field>
+</div>
+<button class="btn btn-success ml-2" (click)="submitProfile()">
+    <i class="fas fa-user-plus"></i> Submit Profile </button>
+</div>
+<hr>
+<table  class="table">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-2">Structure</th>
+            <th scope="col" class="col-2">Sub-Structure</th>
+            <th scope="col" class="col-1">Read</th>
+            <th scope="col" class="col-1">Create</th>
+            <th scope="col" class="col-1">Edit</th>
+            <th scope="col" class="col-1">Delete</th>
+            <th scope="col" class="col-1">Do All</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let p of newPermissions">
+            <td class="col-2">{{getStructureName(p.structure_id) }}</td>
+            <td class="col-2">{{ getSubStructureName(p.structure_id)}}</td>
+            
+            <td class="col-1">
+                <div class="form-check" *ngIf="isChecked(p.read)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.read}}" checked="{{isChecked(p.read)}}"   (change)="readChecked(p.structure_id)">
+                </div>
+                <div class="form-check" *ngIf="!isChecked(p.read)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.read}}"  (change)="readChecked(p.structure_id)">
+                </div>
+            </td>
+
+            <td class="col-1">
+                <div class="form-check" *ngIf="isChecked(p.create)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.create}}" checked="{{isChecked(p.create)}}"   (change)="createChecked(p.structure_id)">
+                </div>
+                <div class="form-check" *ngIf="!isChecked(p.create)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.create}}"  (change)="createChecked(p.structure_id)">
+                </div>
+            </td>
+            
+            <td class="col-1">
+                <div class="form-check" *ngIf="isChecked(p.edit)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.edit}}" checked="{{isChecked(p.edit)}}"   (change)="editChecked(p.structure_id)">
+                </div>
+                <div class="form-check" *ngIf="!isChecked(p.edit)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.edit}}"  (change)="editChecked(p.structure_id)">
+                </div>
+            </td>
+            
+            <td class="col-1">
+                <div class="form-check" *ngIf="isChecked(p.erase)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.erase}}" checked="{{isChecked(p.erase)}}"   (change)="eraseChecked(p.structure_id)">
+                </div>
+                <div class="form-check" *ngIf="!isChecked(p.erase)">
+                    <input class="form-check-input"  type="checkbox" value="{{p.erase}}"  (change)="eraseChecked(p.structure_id)">
+                </div>
+            </td>
+
+            <td class="col-1">
+                <div class="form-check">
+                    <input class="form-check-input"  type="checkbox" (change)="checkRow(p.structure_id)" >
+                  </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</mat-card>
+
+<br>
+<div class="text-center">
+    <button class="btn btn-success" (click)="save()">Save permissions for this profile</button>
+</div>

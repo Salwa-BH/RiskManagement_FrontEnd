@@ -1,0 +1,45 @@
+div.TableContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+table {
+    border-collapse:separate;
+    width: 100%;
+  }
+  
+  
+  th, td {
+    padding: 8px;
+    text-align:center;
+    border-bottom: 1px solid #ddd;
+  }
+ 
+
+
+
+  @media (max-width: 768px) {
+  
+    
+ 
+   
+
+   
+   tr { border: 1px solid #ccc; }
+
+   td{ 
+   
+   width:100% !important;
+ 
+       border-bottom: 1px solid;
+    
+
+   margin-bottom: 0;
+
+   background-color: transparent;
+   padding: 1rem;
+   font-weight: 400;
+   vertical-align: top;
+   color: #707070;
+   text-align: left;
+     
+   }}

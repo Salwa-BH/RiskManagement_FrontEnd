@@ -1,0 +1,27 @@
+{
+  "sidebar": {
+    "elements": {
+      "identification": "Identification",
+      "characterisation": "Characterisation",
+      "assessment": "Evaluation",
+      "riskControl": "Contrôle de risque",
+      "incidents": "Incidents",
+      "actionPlan": "Plan d'action",
+      "dictionary": "Dictionnaire"
+    },
+    "languages": { "english": "Anglais", "french": "Français" },
+    "select": "Changer le langage"
+  },
+
+  "navbar": {
+      "dashboard": "Tableau de bord",
+      "processes": "Processus",
+      "risks": "Risques",
+      "settings": "Parametres"
+  },
+  "riskIdentification": {
+    "identifyRisk": "Identifier un risque",
+    "name": "Nom",
+    "edition": "Modification"
+  }
+}

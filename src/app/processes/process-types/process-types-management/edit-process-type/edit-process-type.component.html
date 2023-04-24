@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Process type modification</h1>
+<mat-dialog-content [formGroup]="processTypeForm">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [value]="data.type?.name" formControlName="name">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+        <mat-label>Parent</mat-label>
+        <mat-select [(value)]="selectedParent" formControlName="parent">
+            <mat-option value="0">No parent (Root)</mat-option>
+            <ng-container *ngFor="let type of processTypes">
+                <mat-option type="submit" *ngIf="type.id !== data?.type?.id" [value]="type.id">{{ type?.name }}
+                </mat-option>
+            </ng-container>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button class="btn btn-secondary" mat-button (click)="onCloseDialog()">Cancel</button>
+    <button class="btn btn-success ml-2" mat-raised-button (click)="onEditType()" *ngIf="data.type; else create">Edit</button>
+    <ng-template #create>
+        <button class="ml-2 btn btn-success" mat-raised-button (click)="onCreateType()">Create</button>
+    </ng-template>
+</div>

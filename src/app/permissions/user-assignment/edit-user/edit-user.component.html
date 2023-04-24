@@ -1,0 +1,66 @@
+
+<h1 mat-dialog-title *ngIf="!data.userAssign ">Create a new Relation</h1>
+<h1 mat-dialog-title *ngIf="data.userAssign">Edit Relation</h1>
+
+<div class="form"  [formGroup]="form">
+
+    <!-- Username -->
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="Username" formControlName="user" [matAutocomplete]="UsersList">
+            <mat-autocomplete #UsersList="matAutocomplete" [displayWith]="displayUser">
+                <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                    {{ user?.username }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+    <!-- Roles -->
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="Role" formControlName="role" [matAutocomplete]="RolesList">
+            <mat-autocomplete #RolesList="matAutocomplete" [displayWith]="displayRole">
+                <mat-option *ngFor="let role of filteredRoles | async" [value]="role">
+                    {{ role?.name }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+
+    <!-- Profiles -->
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="Profile" formControlName="profile" [matAutocomplete]="ProfilesList">
+            <mat-autocomplete #ProfilesList="matAutocomplete" [displayWith]="displayProfile">
+                <mat-option *ngFor="let profile of filteredProfiles | async" [value]="profile">
+                    {{ profile?.name }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+
+<!-- Groups -->
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="Group" formControlName="group" [matAutocomplete]="GroupsList">
+            <mat-autocomplete #GroupsList="matAutocomplete" [displayWith]="displayGroup">
+                <mat-option *ngFor="let group of filteredGroups | async" [value]="group">
+                    {{ group?.name }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+    
+    <div>
+        <button class="btn btn-secondary" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-success ml-2" (click)="create()" *ngIf="!data?.userAssign; else editButton">
+            <i class="fas fa-user-plus"></i> Create Relation</button>
+        <ng-template #editButton>
+            <button class="btn btn-success ml-2" (click)="edit()"><i class="fas fa-user-plus"></i> Edit Relation </button>
+        </ng-template>
+    </div>
+</div>

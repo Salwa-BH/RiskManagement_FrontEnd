@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Status deletion</h1>
+<mat-dialog-content>
+    <p>Are you sure about deleting : "{{ data?.status?.name }}" ?</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button class="btn btn-secondary w-30 ml-5" (click)="onCloseDialog()">Cancel</button>
+    <button class="btn btn-danger w-30 ml-5" (click)="onConfirmDeletion()" cdkFocusInitial>Delete</button>
+</div>
+

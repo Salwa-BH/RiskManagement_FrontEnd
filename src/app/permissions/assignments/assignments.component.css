@@ -1,0 +1,223 @@
+nav
+{
+    position: relative;
+    top: 10%;
+    right: 0;
+    left: 0;
+    width: 319px;
+    display: table;
+    margin: 0 auto;
+    transform: translateY(-50%);
+}
+
+nav a
+{
+    position: relative;
+    width: 33.333%;
+    display: table-cell;
+    text-align: center;
+    color: #3CC3B2;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    padding: 20px 50px;
+    transition: 0.2s ease color;
+    border: #6d8b85;
+    border-radius: 10%;
+    width: 100px;
+    height: 100px;
+    
+}
+
+nav a:before, nav a:after
+{
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.2s ease transform;
+}
+
+nav a:before
+{
+    top: 0;
+    left: 10px;
+    width: 6px;
+    height: 6px;
+}
+
+nav a:after
+{
+    top: 5px;
+    left: 18px;
+    width: 4px;
+    height: 4px
+}
+
+nav a:nth-child(1):before
+{
+    background-color: yellow;
+}
+
+nav a:nth-child(1):after
+{
+    background-color: red;
+}
+
+nav a:nth-child(2):before
+{
+    background-color: #00e2ff;
+}
+
+nav a:nth-child(2):after
+{
+    background-color: #89ff00;
+}
+
+nav a:nth-child(3):before
+{
+    background-color: purple;
+}
+
+nav a:nth-child(3):after
+{
+    background-color: palevioletred;
+}
+
+#indicator
+{
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: 0.2s ease left;
+}
+
+nav a:hover
+{
+    color:  #819f98;
+    transition-duration: 1s;
+
+    -webkit-transition: background-color 1s ease-out;
+    -moz-transition: background-color 1s ease-out;
+    -o-transition: background-color 1s ease-out;
+    transition: background-color 1s ease-out;
+
+}
+
+nav a:hover:before, nav a:hover:after
+{
+    transform: scale(1);
+}
+
+nav a:nth-child(1):hover ~ #indicator
+{
+    background: linear-gradient(130deg, yellow, red);
+}
+
+nav a:nth-child(2):hover ~ #indicator
+{
+    left: 34%;
+    background: linear-gradient(130deg, #00e2ff, #89ff00);
+}
+
+nav a:nth-child(3):hover ~ #indicator
+{
+    left: 70%;
+    background: linear-gradient(130deg, purple, palevioletred);
+}
+
+#ytd-url {
+  display: block;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px;
+  margin: 20px;
+  color: #fff;
+  font-family: Arial;
+  font-size: 14px;
+  text-decoration: none;
+  background-color: #000;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+  z-index: 125;
+}
+.mat-card {
+  margin-top: 20px;
+}
+div.TableContainer {
+    width: 90%;
+    overflow-x: auto;
+}
+table {
+    border-collapse:separate;
+    width: 100%;
+  }
+  
+  
+  th, td {
+    padding: 8px;
+    text-align:center;
+    border-bottom: 1px solid #ddd;
+  }
+ 
+
+
+
+  @media (max-width: 768px) {
+  
+   tr { border: 1px solid #ccc; }
+
+   td{ 
+        width:100% !important;
+        border-bottom: 1px solid;
+        margin-bottom: 0;
+
+        background-color: transparent;
+        padding: 1rem;
+        font-weight: 400;
+        vertical-align: top;
+        color: #707070;
+        text-align: left;
+     
+   }}
+
+.description{
+    display: block;
+    /*word-wrap:break-word;*/
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+    
+}
+
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #f7c5c0;
+	background:linear-gradient(to bottom, #364541  5%, #627d76 50%);
+	background-color:#364541    ;
+	border-radius:6px;
+	border:1px solid #627d76;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+    margin: 5%;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #7e7c7c 5%, #8b6d74 100%);
+	background-color:#e4685d;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

@@ -1,0 +1,77 @@
+<div class="main-content" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+         
+
+                <div class="card border-danger mb-3">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Profile</h4>
+                        <p class="card-category">Complete your profile</p>
+                    </div>
+                    <div class="card-body text-danger">
+                        <form>
+                           
+                  <div class="p-1">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name"><mat-icon  matSuffix>person</mat-icon>
+    </mat-form-field>
+                        </div>
+
+            <div class="d-flex align-items-stretch ">
+    <mat-form-field class="p-2 align-self-stretch">
+      <mat-label>Email Address</mat-label>
+      <input  matInput formControlName="email"><mat-icon matSuffix> email</mat-icon>
+    </mat-form-field>
+    
+                </div>
+
+                         <div class="p-2" >
+     
+
+      <mat-form-field hintLabel="Site" appearance="fill">
+        <mat-label>Company Site</mat-label>
+        <input matInput #input maxlength="10" placeholder="Ex. Rabat">	<mat-icon matSuffix>location_city</mat-icon>
+        
+      </mat-form-field>
+    
+   
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <input matInput #input maxlength="10" placeholder="Ex. Admin"><mat-icon matSuffix>work</mat-icon>
+        
+      </mat-form-field>
+
+    
+                            </div>
+
+
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" style="margin-top: 50px;">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    
+                   
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">Software Engineer </h6>
+                        <h4 class="card-title">Laila Elhaloui</h4>
+                        <p class="card-description">
+                          a detailed study of engineering to the design, development and maintenance of software.
+                           Software engineering was introduced to address the issues of low-quality software projects.
+                            Problems arise when a software generally exceeds timelines, budgets, and reduced levels of quality.
+                           It ensures that the application is built consistently, correctly, on time and on budget and within requirements.
+                        </p>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-round" style="margin-top: 50px;">Follow</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+

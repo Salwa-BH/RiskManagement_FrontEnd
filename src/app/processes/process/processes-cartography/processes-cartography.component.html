@@ -1,0 +1,17 @@
+<div id="cartographieProcessus" >
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'macroActivitesContenu')" *ngFor="let type of processTypes">{{ type.name }}</button>
+    </div>
+    <div id="macroActivitesContenu" class="tabcontent">
+        <div class="container clearfix w-100 p-3">
+            <div class="floatLeft">
+                <app-processes-list></app-processes-list>
+            </div>
+
+            <div class="floatRight">
+                <app-processes-map></app-processes-map>
+            </div>
+
+        </div>
+    </div>
+</div>

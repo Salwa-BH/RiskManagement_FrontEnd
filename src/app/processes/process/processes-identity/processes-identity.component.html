@@ -1,0 +1,116 @@
+<!-- Process identification -->
+<table  class="table table-bordered">
+    <tr>
+        <td>
+            <span class="labelparentProcessAttributes">Title:</span>
+            <span class="parentProcessShortAttributes">{{ selectedProcess?.title }}</span>
+        </td>
+        <td>
+            <span class="labelparentProcessAttributes">Owner:</span>
+            <span class="parentProcessShortAttributes">{{ selectedProcess?.title }}</span>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <span class="labelparentProcessAttributes">Description:</span>
+            <span class="parentProcessLongAttributes"> {{ selectedProcess?.description }}</span>
+        </td>
+        <td>
+            <span  class="labelparentProcessAttributes">Aim:</span>
+            <span class="parentProcessLongAttributes"> {{ selectedProcess?.aim}}</span>
+        </td>
+    </tr>
+</table>
+    
+<!-- SIPOC Matrix -->
+<div class="mt-5">
+    <table class="table table-striped">
+        <!-- Table header -->
+        <thead>
+            <tr class="row">
+                <th scope="col" class="col-2 supplierheader">Suppliers</th>
+                <th scope="col" class="col-2 inputsheader">Inputs</th>
+                <th scope="col" class="col processheader">Process Components</th>
+                <th scope="col" class="col-2 outputsheader">Outputs</th>
+                <th scope="col" class="col-2 customersheader">Customers</th>
+            </tr>
+        </thead>
+
+        <!-- Table body -->
+        <tbody>
+            <ng-container *ngFor="let child of children; let i=index">
+                <tr class="row">
+                    
+
+                    <!-- Process title -->
+                    <td class="col dividerprocessStyling">
+                        
+                        {{ getProcessTypeName(child.process_type) }} {{ i + 1 }} :
+                         {{ child?.title }}
+                        
+                       
+                    </td>
+
+                    
+                </tr>
+                <ng-container *ngTemplateOutlet="childProcess; context: { $implicit: child.children, id: i, level: 1 }">
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #childProcess let-children let-id="id" let-level="level">
+
+    <ng-container *ngFor="let child of children; let j = index">
+        <tr class="lastchild row">
+
+            <!-- Suppliers -->
+            <td class="col-2 supplierStyling">
+                <ul>
+                    <li *ngFor="let supplier of child?.suppliers"> {{ supplier?.playerDetails.name }}
+                    </li>
+                </ul>
+            </td>
+
+            <!-- Inputs -->
+            <td class="col-2 inputStyling">
+                <ul>
+                    <li *ngFor="let input of child?.inputs"> {{ input?.ioDetails.name }}</li>
+                </ul>
+            </td>
+
+            <!-- Process Title -->
+            <td class="col processStyling">
+            
+                {{ getProcessTypeName(child.process_type) }} {{ id + 1 + '-' + (j+1) }} : {{ child?.title }} {{level}}
+
+                <br>
+                <button class="editButton btn btn-primary btn-sm mt-3 float-right" *ngIf="isLeaf(child)" (click)="openSipocEditionDialog(child?.id)">Edit</button>
+            </td>
+
+            <!-- Outputs -->
+            <td class="col-2 outputStyling">
+                <ul>
+                    <li *ngFor="let output of child?.outputs"> {{ output?.ioDetails.name }}</li>
+                </ul>
+            </td>
+
+            <!-- Customers -->
+            <td class="col-2 customerStyling">
+                <ul>
+                    <li *ngFor="let customer of child?.customers"> {{ customer?.playerDetails.name }}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+
+        <ng-container *ngIf="child.children">
+            <ng-container
+                *ngTemplateOutlet="childProcess; context: { $implicit: child.children, id: (id + 1) + '-', level: level + 1 }">
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+</ng-template>

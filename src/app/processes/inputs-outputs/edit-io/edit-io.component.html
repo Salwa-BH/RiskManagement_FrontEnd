@@ -1,0 +1,29 @@
+<div class="form"  [formGroup]="ioForm">
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="short name" formControlName="name" [matAutocomplete]="IosList">
+            <mat-autocomplete #IosList="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let io of filteredIos | async" [value]="io">
+                    {{ io?.name }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="description" appearance="fill">
+        </mat-form-field>
+    </div>
+    <div>
+        <button class="btn btn-secondary" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-success ml-2" (click)="createIo()" *ngIf="!data?.io; else editButton"><i
+                class="fas fa-user-plus"></i> Create
+            Io
+        </button>
+        <ng-template #editButton>
+            <button class="btn btn-success ml-2" (click)="editIo()"><i class="fas fa-user-plus"></i> Edit Io
+            </button>
+        </ng-template>
+    </div>
+</div>

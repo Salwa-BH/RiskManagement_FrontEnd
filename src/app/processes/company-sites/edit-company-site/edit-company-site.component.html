@@ -1,0 +1,18 @@
+<div [formGroup]="siteForm">
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="name" appearance="fill">
+        </mat-form-field>
+    </div>
+    <div>
+        <button class="btn btn-secondary ml-2" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-success ml-2" (click)="createSite()" *ngIf="!data?.site; else editButton"><i
+                class="fas fa-user-plus"></i> Create
+            site
+        </button>
+        <ng-template #editButton>
+            <button class="btn btn-success ml-2" (click)="editSite()"><i class="fas fa-user-plus"></i> Edit site
+            </button>
+        </ng-template>
+    </div>
+</div>

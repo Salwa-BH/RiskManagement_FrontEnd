@@ -1,0 +1,70 @@
+<div [formGroup]="playerForm">
+    <!-- <div>
+        <mat-form-field>
+            <input matInput placeholder="short name" formControlName="short_name2">
+        </mat-form-field>
+    </div> 
+    <div>
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="long_name" appearance="fill">
+        </mat-form-field>
+    </div>
+-->
+
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="short name" formControlName="short_name" [matAutocomplete]="ShortPlayersList">
+            <mat-autocomplete #ShortPlayersList="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let player of filteredShortNames | async" [value]="player">
+                    {{ player }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <input  matInput placeholder="long name" formControlName="long_name" [matAutocomplete]="LongPlayersList">
+            <mat-autocomplete #LongPlayersList="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let player of filteredLongNames | async" [value]="player">
+                    {{ player }}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+    </div>
+    
+
+    <mat-form-field>
+        <mat-label>Nature</mat-label>
+        <mat-select formControlName="nature">
+            <mat-option value="organisational unit">Organisational unit</mat-option>
+            <mat-option value="function">Function</mat-option>
+            <mat-option value="external">External</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Start date</mat-label>
+        <input formControlName="start_date" matInput [matDatepicker]="picker1">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>End date</mat-label>
+        <input formControlName="end_date" matInput [matDatepicker]="picker2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <div>
+        <button class="btn btn-secondary ml-2" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-success ml-2" (click)="createPlayer()" *ngIf="!data?.player; else editButton"><i
+                class="fas fa-user-plus"></i> Create Player
+        </button>
+        <ng-template #editButton>
+            <button class="btn btn-success ml-2" (click)="editPlayer()"><i class="fas fa-user-plus" style="background-color: #2d545e;"></i> Edit Player
+            </button>
+        </ng-template>
+    </div>
+</div>

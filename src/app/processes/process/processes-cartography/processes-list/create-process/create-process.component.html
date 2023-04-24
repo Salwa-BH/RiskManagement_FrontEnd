@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Process creation</h1>
+<mat-dialog-content [formGroup]="processForm">
+    <mat-form-field>
+        <mat-label>Titre du processus</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description du processus</mat-label>
+        <input matInput formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Type du processus</mat-label>
+        <mat-select formControlName="process_type">
+            <mat-option disabled>None</mat-option>
+            <mat-option *ngFor="let type of processTypes" [value]="type.id">{{ type.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>parent du processus</mat-label>
+        <mat-select formControlName="parent">
+            <mat-option value="0" selected>Pas de parent</mat-option>
+            <mat-option *ngFor="let process of processes" [value]="process.id"> {{ process.title }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-button (click)="onCloseDialog()" class="btn btn-outline-secondary">Annuler</button>
+    <button mat-raised-button (click)="onCreateProcess()" cdkFocusInitial class="btn btn-primary ml-1">Creer
+        processus</button>
+</div>
+<!-- *ngIf="!data.editedProcess; else edit" -->

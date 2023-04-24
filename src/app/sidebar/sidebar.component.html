@@ -1,0 +1,168 @@
+<div *ngIf="!isVisible" id="nav-icon1" (click)="close()" class="show-sidebar">
+  
+  <i class="fas fa-sliders-h"></i>
+  </div>
+ 
+  
+<div *ngIf="isVisible" class="page-wrapper chiller-theme toggled" style="margin-top: 60px; " >
+    
+<nav id="sidebar" class="sidebar-wrapper">
+<div class="sidebar-content">
+<div class="sidebar-brand" >
+  <a [routerLink]="['/dashboard']">Risk Tracer</a>
+  <div id="close-sidebar">
+    <i class="fas fa-times" (click)="close()" style="margin-right: -10px;"></i>
+  </div>
+</div>
+<div class="sidebar-header">
+    <div class="user-pic">
+      <img class="img-responsive img-rounded" src="https://w7.pngwing.com/pngs/742/986/png-transparent-safety-security-risk-assessment-business-business-company-text-people.png" alt="User picture">
+    </div>
+    <div class="user-info">
+      <span class="user-name">
+      <strong>company name</strong>
+    </span>
+   
+  </div>
+ 
+   <div [formGroup]="companySiteForm" [style.width.%]="100">
+          <mat-form-field [style.width.%]="100" style="color: #2d545e;">
+            <i class="fas fa-sitemap" style="padding: 5px;"></i>
+              <span>Company Site</span>
+              <mat-select value="{{currentCompanySite?.id}}" formControlName="companySiteSelector">
+                  <mat-option *ngFor="let site of companySitesList" [value]="site?.id" style="color: #2d545e;">
+                      {{ site?.name }}</mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+
+    </div>
+<!-- sidebar-header  -->
+
+
+<div class="sidebar-menu">
+  <ul>
+  
+    <li *ngIf="selectedMode === 0">
+      
+     <a [routerLink]="['/dashboard']">  <i class="fa fa-tachometer-alt"></i>{{ 'navbar.dashboard' | translate }}</a>
+    </li>
+    <li>
+        <a *ngIf="selectedMode === 1" class="nav-link"> <i class="fas fa-clipboard-list"></i>{{ 'navbar.processes' | translate }}</a>
+      <div>
+          <!-- if process mapping is selected -->
+        <ul class="list-unstyled components" *ngIf="selectedMode === 1" style="margin-left: 40px;">
+            <li routerLinkActive="active">
+                <a [routerLink]="['/processes','map']">Map</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/processes','sipoc']">SIPOC</a>
+            </li>
+            <!-- Nav Item - Pages Collapse Dictionary -->
+            <li routerLinkActive="active">
+              <a [routerLink]="['/processes','dictionary-processes']">Dictionary</a>
+          </li>
+
+
+            
+        </ul>
+      </div>
+    </li>
+    <li>
+        <a *ngIf="selectedMode === 2" class="nav-link"><i class="fas fa-exclamation-triangle"></i>
+         {{ 'navbar.risks' | translate }}</a>
+      <div >
+        <!-- if risk mapping is selected -->
+        <ul class="list-unstyled components" *ngIf="selectedMode === 2" style="margin-left: 40px;">
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">Map</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.identification' | translate }}</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.characterisation' | translate }}</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.assessment' | translate }}</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.riskControl' | translate }}</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.incidents' | translate }}</a>
+          </li>
+          <li routerLinkActive="active">
+              <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.actionPlan' | translate }}</a>
+          </li>
+        
+          <li routerLinkActive="active">
+            <a [routerLink]="['/unauthorized']">{{ 'sidebar.elements.dictionary' | translate }}</a>
+          </li>
+         
+      </ul>
+      </div>
+    </li>
+    <li>
+        <a *ngIf="selectedMode === 3" class="nav-link"><i class="fas fa-users-cog"></i>{{ 'navbar.settings' | translate }}</a>
+      
+      <div>
+        <ul class="list-unstyled components" *ngIf="selectedMode === 3" style="margin-left: 40px;">
+
+          <!--  // Give user choise of authentification mode
+            // to resee if it is possible
+          <li routerLinkActive="active">
+            <a [routerLink]="['/administration-settings']">Administration Settings</a>
+          </li> -->
+          <li routerLinkActive="active">
+            <a  [routerLink]="['/company-sites','manage']">Company's sites</a>
+        </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/assignments']">Profiles, Roles and Groups</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/assign-users']">Assign users</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/permissions']">Assign Permissions</a>
+          </li>
+          
+      
+        
+      </ul>
+      </div>
+    </li>
+   
+   
+    
+
+  </ul>
+</div>
+
+<!-- sidebar-menu  -->
+</div>
+<!-- sidebar-content  -->
+
+
+
+
+<div id="circularMenu1" class="circular-menu circular-menu-left ">
+
+  <a class="floating-btn" onclick="document.getElementById('circularMenu1').classList.toggle('active');">
+    <i class="fa fa-bars"></i>
+  </a>
+
+  <menu class="items-wrapper">
+    <!-- <a [routerLink]="['/profile']" class="menu-item fa fa-user"></a> -->
+    <a [routerLink]="['/notifications']"  class="menu-item fas fa fa-bell"></a>
+    <a (click)="changelanguage()" class="menu-item fas fa-globe-americas"> </a>
+    <a (click)="logout()" class="menu-item fa fa-sign-out-alt"></a>
+   
+  </menu>
+
+</div>
+</nav>
+<!-- sidebar-wrapper  -->
+
+</div>
+<!-- page-wrapper -->

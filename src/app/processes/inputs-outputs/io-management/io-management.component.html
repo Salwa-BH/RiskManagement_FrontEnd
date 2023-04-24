@@ -1,0 +1,54 @@
+<div >
+  <br>
+<mat-card>
+
+    <div class="btn-group" style="height: 40px;" >
+        <button style=" background-color: #2d545e;" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Export
+        </button>
+        <div class="dropdown-menu" style="background-color: #2d545e;">
+          <a class="dropdown-item" (click)="exportexcel(IOs)"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Excel</a>
+          <a class="dropdown-item" (click)="generatePdf('Inputs Outputs')"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Pdf</a>
+          <a class="dropdown-item" (click)="exportcsv(IOs)"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Csv</a>
+        </div>
+      </div>
+    
+    <br>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-5">Name</th>
+            <th scope="col" class="col-5">Description</th>
+            <th scope="col" class="col-2">Edition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let io of IOs | paginate: { itemsPerPage:pageSize, currentPage: p }">
+            <td class="col-5">{{ io?.name}}</td>
+            <td class="col-5">{{ io?.description }}</td>
+            <td class="col-1">
+                <button [id]="io?.id" class="btn btn-primary btn-sm" (click)="edit($event)" style="background-color: #2d545e;"><i [id]="io?.id"
+                        class="fas fa-pen fa-sm"></i></button>
+            </td>
+            <td class="col-1">
+              <button [id]="io?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)"style="background-color: #CC9752;" ><i [id]="io?.id"
+                      class="fas fa-trash fa-sm"></i>
+              </button>
+          </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+<div  class="d-flex justify-content-end">
+    Items per Page:
+    <select  (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+</mat-card><br>
+<div class="text-center">
+    <button class="btn btn-success" (click)="add()"  style="background-color: #CC9752;" >Create new I/O</button>
+</div>
+</div>

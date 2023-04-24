@@ -1,0 +1,40 @@
+<div accessControl moduleType="Process" subModuleType="Company's sites" accessType="read">
+    
+<br>
+<mat-card>
+
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-5">Name</th>
+            <th scope="col" class="col-5">Default site</th>
+            <th scope="col" class="col-2">Edition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let companySite of companySites | paginate: { itemsPerPage:3, currentPage: p }">
+            <td class="col-5">{{ companySite?.name}}</td>
+            <td class="col-5">
+                <mat-checkbox [checked]="companySite?.is_default"
+                    (click)="makeDefaultSite(companySite.id)">{{ companySite?.id }}</mat-checkbox>
+            </td>
+            <td class="col-2">
+                <button [id]="companySite?.id" class="btn btn-primary btn-sm" (click)="edit($event)">
+                    <i [id]="companySite?.id" class="fas fa-pen fa-sm"></i></button>
+                <button [id]="companySite?.id" class="btn btn-danger btn-sm ml-2" (click)="delete($event)">
+                    <i [id]="companySite?.id" class="fas fa-trash fa-sm"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+
+</mat-card>
+<br>
+
+<div class="text-center">
+    <button class="btn btn-success" (click)="add()">Create new site</button>
+</div>
+
+</div>

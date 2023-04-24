@@ -1,0 +1,39 @@
+<br>
+
+<mat-card>
+
+<h1> Users roles, profiles and groups </h1>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-3">Username</th>
+            <th scope="col" class="col-3">Role</th>
+            <th scope="col" class="col-2">Profile</th>
+            <th scope="col" class="col-2">Group</th>
+            <th scope="col" class="col-2">Edition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let UserAssign of UserAssigns | paginate: { itemsPerPage:5, currentPage: p }">
+            <td class="col-3">{{getUsername( UserAssign?.user_id) }}</td>
+            <td class="col-3">{{ getRoleName(UserAssign?.role_id)}}</td>
+            <td class="col-2">{{ getProfileName(UserAssign?.profile_id)}}</td>
+            <td class="col-2">{{ getGroupName(UserAssign?.group_id)}}</td>
+            <td class="col-2">
+                <button [id]="UserAssign?.id" class="btn btn-primary btn-sm" (click)="edit($event)">
+                    <i [id]="UserAssign?.id" class="fas fa-pen fa-sm"></i></button>
+                <button [id]="UserAssign?.id" class="btn btn-danger btn-sm ml-2" (click)="delete(UserAssign?.id)">
+                    <i [id]="UserAssign?.id" class="fas fa-trash fa-sm"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls class="d-flex justify-content-center" (pageChange)="p = $event"></pagination-controls>
+
+</mat-card>
+
+<br>
+<div class="text-center">
+    <button class="btn btn-success" (click)="add()">Create new relation</button>
+</div>

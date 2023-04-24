@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Process modification</h1>
+<mat-dialog-content [formGroup]="processForm" (ngSubmit)="onEditProcess()">
+    <mat-form-field>
+        <mat-label>Process title</mat-label>
+        <input matInput [value]="data.editedProcess.title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Process description</mat-label>
+        <input matInput [value]="data.editedProcess.description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Process type</mat-label>
+        <mat-select [(ngModel)]="selectedProcessType" formControlName="process_type">
+            <mat-option disabled>None</mat-option>
+            <mat-option *ngFor="let type of processTypes" [value]="type.id">{{ type.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Process parent</mat-label>
+        <mat-select [(ngModel)]="selectedParent" formControlName="parent">
+            <mat-option value="0">Pas de parent</mat-option>
+            <mat-option *ngFor="let process of processes" type="submit" [value]="process.id">{{ process.title }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button class="btn btn-secondary" mat-button (click)="onCloseDialog()">Cancel</button>
+    <button class="btn btn-primary ml-2" mat-raised-button (click)="onEditProcess()" cdkFocusInitial>Modify</button>
+</div>

@@ -1,0 +1,155 @@
+div {
+	display: flex;
+	margin-top: 10px;
+	margin-left: 15px;
+}
+table {
+	width: 100%;
+	margin-top: 50px;
+	overflow-x: auto;
+	
+}
+
+.activityHeader {
+	background-color: #94f2ff;
+}
+
+.supplierheader,
+.inputsheader,
+.processheader,
+.outputsheader,
+.customersheader {
+	text-align: center;
+}
+.supplierheader {
+	background-color: #5A7D7C99;
+}
+.inputsheader {
+	background-color: #5A7D7C99;
+	text-align: center;
+}
+.processheader {
+	background-color: #5A7D7C99;
+	text-align: center;
+}
+.outputsheader {
+	background-color: #5A7D7C99;
+}
+.customersheader {
+	background-color: #5A7D7C99;
+}
+
+.processStyling {
+	background-color: #5A7D7C99;
+}
+.dividerprocessStyling {
+	background-color: #5A7D7C99;
+	text-align: center;
+	font-weight: 600;
+}
+
+.inputStyling {
+	background-color: #5A7D7C99;
+}
+
+.supplierStyling {
+	background-color: #5A7D7C99;
+}
+.outputStyling {
+	background-color: #5A7D7C99;
+}
+
+.customerStyling {
+	background-color: #5A7D7C99;
+}
+
+.parentProcessShortAttributes {
+	display: inline-block;
+	width: 70%;
+	background: rgba(215, 253, 236, 0.5);
+	padding: 3px 10px 5px 10px;
+	margin-bottom: 5px;
+}
+.parentProcessLongAttributes {
+	display: inline-block;
+	width: 70%;
+	background: rgba(215, 253, 236, 0.5);
+	padding: 3px 10px 5px 10px;
+	margin-bottom: 5px;
+	height: 100px;
+}
+span.labelparentProcessAttributes {
+	display: inline-block;
+	padding: 3px 10px 5px 10px;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	width: 20%;
+}
+
+tr.lastchild:hover {
+	background: rgba(153, 196, 176, 0.5);
+	-webkit-transform: scale(1.015, 1.015);
+	-moz-transform: scale(1.015, 1.015);
+	-o-transform: scale(1.015, 1.015);
+	-ms-transform: scale(1.015, 1.015);
+	transform: scale(1.015, 1.015);
+}
+
+.editButton {
+	visibility: hidden;
+}
+
+tr:hover .editButton {
+	visibility: visible;
+}
+
+ @media (max-width: 750px) {
+  
+	.mt-5 {
+	  width: 700px;
+	  display: block;
+	  overflow: scroll;
+	}
+
+} 
+@media (max-width: 1200px) {
+	.labelparentProcessAttributes, .parentProcessLongAttributes, .parentProcessShortAttributes{
+		position: relative;
+		display: block;
+  }
+}
+  @media (max-width: 768px) {
+  
+    table { 
+		width: 100%; 
+		border-collapse: collapse; 
+		margin:50px auto;
+		}
+	
+	td { 
+		display: block;
+		padding: 10px; 
+		border: 1px solid #ccc; 
+		text-align: left; 
+		font-size: 14px;
+		}
+	.labels tr td {
+		background-color: #2cc16a;
+		font-weight: bold;
+		color: #fff;
+	}
+	.label tr td label {
+		display: block;
+	}
+	.labelparentProcessAttributes, .parentProcessLongAttributes, .parentProcessShortAttributes{
+		position: relative;
+		display: inline-block;
+  }
+}
+
+@media (max-width: 468px) {
+	.labelparentProcessAttributes, .parentProcessLongAttributes, .parentProcessShortAttributes{
+		position: relative;
+		display: block;
+  }
+}

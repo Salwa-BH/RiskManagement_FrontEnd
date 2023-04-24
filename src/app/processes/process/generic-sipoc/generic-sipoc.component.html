@@ -1,0 +1,69 @@
+<div accessControl moduleType="Process" subModuleType="SIPOC" accessType="read">
+    <!-- Processes navigation bar -->
+<div class="border border-primary rounded" style="margin-top: 10px;">
+    <!-- Always pointing to Root processes view -->
+    <button class="btn btn-link" [routerLink]="['/processes/sipoc', 0]">Home</button>
+
+    <!-- If we bypass depth 3, we show links to the previous parents-->
+    <button class="btn btn-link" *ngFor="let parent of currentParent?.parents"
+        [routerLink]="['/processes/sipoc',parent?.id]">{{ parent?.title}} </button>
+
+    <!-- Latest parent in the tree is always shown -->
+    <span>{{currentParent?.title}}</span>
+</div>
+<br>
+<!-- Content div - Contains processes cards and buttons -->
+<div class="ml-3">
+    <div  accessControl moduleType="Process" subModuleType="SIPOC" accessType="create" >
+        <button class="btn btn-primary rounded-circle" (click)="openSipocCreationDialog()">+</button>
+        <span class="ml-3" (click)="openSipocCreationDialog()">Add a new element</span>
+    </div>
+
+    <br>
+<mat-card class="shadow p-3 mb-5 bg-white rounded">
+    <!-- scrolling container -->
+    <div class="scrolling-container" >
+        <div class="row d-flex justify-content-between">
+            <ng-container *ngFor="let process of processes; let i = index" style="margin: 10px;">
+                <div class="card rounded mb-3 col-12 col-sm-6 col-md-6 col-lg-4"  style="width: 30%;">
+
+                    <!-- Card title -->
+                    <h5 class="card-title noselect p-3" [ngClass]="{
+                    'bg-secondary': process?.status === 'Empty',
+                    'bg-warning': process?.status === 'In progress',
+                    'bg-success': process?.status === 'Complete'
+                }" id='card-title' (dblclick)="onProcessChoice(process?.id)">{{ process?.title}}</h5>
+                    <div class="card-body">
+                        <div>
+                            <span class="card-text">{{ process?.children?.length || "0" }}
+                                {{ processTypes[process?.process_type + 1]?.name }}</span>
+                            <br>
+                            <span class="card-text"> {{ process?.completeChildCount }}
+                                /{{ process?.children?.length || "0" }}
+                                SIPOC</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <button class="btn btn-link float-left" id="view"
+                            [routerLink]="['/processes/sipoc',process?.id]">VIEW</button>
+                        <button class="btn btn-link float-right" (click)="onChangeStatus(process?.id)" id="modify"  accessControl moduleType="Process" subModuleType="SIPOC" accessType="edit">MODIFY</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</mat-card>
+    <!-- Processes status colors -->
+    <div id="map-legend" class="d-flex justify-content-around">
+        <span class="status-key bg-secondary"></span>
+        <span>Empty</span>
+        <span class="status-key bg-warning"></span>
+        <span>In progress</span>
+        <span class="status-key bg-success"></span>
+        <span>Complete</span>
+    </div>
+
+</div>
+
+</div>

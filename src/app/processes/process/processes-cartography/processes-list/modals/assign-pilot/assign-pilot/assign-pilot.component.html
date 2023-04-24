@@ -1,0 +1,11 @@
+<h3>Assign pilot to "{{ selectedProcess?.title }}"</h3>
+<div class="mt-3" [formGroup]="pilotForm">
+    <select formControlName="selectedPilot">
+        <option *ngFor="let player of players" [value]="player.id" [selected]="player?.id === currentPilot?.player">{{ player?.long_name }}</option>
+    </select>
+    <br>
+    <div class="mt-2">
+        <button class="btn btn-secondary mr-2" (click)="onCloseDialog()">Cancel</button>
+        <button class="btn btn-primary" (click)="onConfirmation()">Save</button>
+    </div>
+</div>

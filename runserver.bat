@@ -1,0 +1,1 @@
+ng serve --ssl true --ssl-cert C:\\SRC\risktracer\\RiskTracer-Front-end\\ssl\\server.crt --ssl-key C:\\SRC\\risktracer\\RiskTracer-Front-end\\ssl\\server.key

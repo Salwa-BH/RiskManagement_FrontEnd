@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\risks",
+    "\\src\\app\\risks\\action-plan-management",
+    "\\src\\app\\risks\\action-plan-management\\edit-action-plan"
+  ],
+  "SelectedNode": "\\src\\app\\risks\\risk.service.ts",
+  "PreviewInSolutionExplorer": false
+}

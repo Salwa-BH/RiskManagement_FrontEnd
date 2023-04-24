@@ -1,0 +1,14 @@
+<h3>Rename element : "{{data?.process.title}}"</h3>
+<div [formGroup]="renameForm">
+    <mat-form-field>
+        <mat-label>Updated title</mat-label>
+        <input matInput [value]="data?.process.title" formControlName="title">
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCloseDialog({
+            newTitle: null,
+            isSuccess: false
+          })" class="btn btn-outline-secondary">Cancel</button>
+        <button mat-raised-button (click)="onValidate()" cdkFocusInitial class="btn btn-primary ml-1">Rename</button>
+    </div>
+</div>

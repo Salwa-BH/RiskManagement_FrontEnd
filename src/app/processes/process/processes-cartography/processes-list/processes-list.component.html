@@ -1,0 +1,78 @@
+<div class="just-padding mr-2">
+    <div class="list-group list-group-root card">
+        <ng-container *ngFor="let process of processes; let i = index">
+            <a href="{{'#' + i}}" class="list-group-item" data-toggle="collapse" [contextMenu]="crudMenu"
+                [contextMenuSubject]="process">
+                <i class="fas fa-angle-right mr-2 fa-sm"></i>{{ process?.title }}
+            </a>
+            <div class="list-group collapse" id="{{ i }}" *ngIf="process?.children">
+                <ng-container *ngTemplateOutlet="tree; context: { $implicit: process.children, id: i }"></ng-container>
+            </div>
+        </ng-container>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <button class="btn btn-outline-success btn-sm" (click)="openProcessCreationDialog()">Create Process</button>
+        <button class="btn btn-outline-warning btn-sm" (click)="openProcessMergeDialog()">Merge Processes</button>
+    </div>
+</div>
+
+
+
+<ng-template #tree let-allItems let-id="id">
+
+    <ng-container *ngFor="let item of allItems; let j = index">
+
+        <a href="{{ '#' + id + '-' + j  }}" class="list-group-item" data-toggle="collapse" [contextMenu]="crudMenu"
+            [contextMenuSubject]="item">
+            <i class="fas fa-angle-right mr-2 fa-sm"></i>{{ item.title }}
+        </a>
+
+        <div class="list-group collapse" id="{{ id + '-' + j }}" *ngIf="item.children">
+            <ng-container *ngTemplateOutlet="tree; context: { $implicit: item.children, id: id + '-' + j }">
+            </ng-container>
+        </div>
+    </ng-container>
+
+</ng-template>
+
+
+<context-menu>
+    <ng-template contextMenuItem (execute)="openCreateProcess($event)">
+        Add child
+    </ng-template>
+    <ng-template contextMenuItem [subMenu]="playersMenu">
+        Assign Player
+    </ng-template>
+    <context-menu #playersMenu>
+        <ng-template contextMenuItem (execute)="onAssignSupplier($event)">
+            Assign supplier
+        </ng-template>
+        <ng-template contextMenuItem (execute)="onAssignCustomer($event)">
+            Assign customer
+        </ng-template>
+        <ng-template contextMenuItem (execute)="onAssignPilot($event)">
+            Assign pilot
+        </ng-template>
+    </context-menu>
+    <ng-template contextMenuItem [subMenu]="ioMenu">
+        Assign I/O
+    </ng-template>
+    <context-menu #ioMenu>
+        <ng-template contextMenuItem (execute)="onAssignInput($event)">
+            Assign input
+        </ng-template>
+        <ng-template contextMenuItem (execute)="onAssignOutput($event)">
+            Assign output
+        </ng-template>
+    </context-menu>
+    <ng-template contextMenuItem let-item (execute)="openProcessEdit($event)">
+        Edit
+    </ng-template>
+    <ng-template contextMenuItem let-item (execute)="onDeleteProcess($event)">
+        Delete
+    </ng-template>
+
+</context-menu>

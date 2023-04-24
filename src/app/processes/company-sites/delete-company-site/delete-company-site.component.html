@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Site deletion</h1>
+<mat-dialog-content>
+    <p>Are you sure about deleting : "{{ data?.site?.name }}" ?</p>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button class="btn btn-secondary w-25 ml-5" (click)="onCloseDialog()">Cancel</button>
+    <button class="btn btn-danger w-25 ml-2" (click)="onConfirmDeletion()" cdkFocusInitial>Delete</button>
+</div>

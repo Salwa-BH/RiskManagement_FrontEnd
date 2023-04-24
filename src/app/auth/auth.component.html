@@ -1,0 +1,57 @@
+<div class="container" >
+    <!-- Outer Row -->
+    <div class="row center justify-content-center">
+  
+      <div class="col-xl-10 col-lg-6 col-md-6">
+  
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-3 d-none d-lg-block"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4 title">Welcome to Risk Tracer!</h1>
+                  </div>
+                  <form class="user " #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+                    
+                    <div class="form-group input" >
+                        <input type="text" name="email" id="email" class="form-control form-control-user" ngModel name="email"  placeholder="Email" autofocus required>
+                    </div>
+                    
+                    <div class="form-group input">
+                      <input type="password" name="password" ngModel name="password"
+                             class="form-control form-control-user"
+                             id="password" placeholder="Password" required minlength="6"/>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Stay connected</label>
+                      </div>
+                    </div>
+
+                   
+
+                    <button type="submit" [disabled]="!authForm.valid"
+                            class="btn btn-info">Sign in</button>
+                    <hr>
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small"  (click)="goToForgotPassword()">Forgot password?</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+

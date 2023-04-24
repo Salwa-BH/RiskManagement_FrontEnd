@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="example-container col">
+        <h2>Available Available I/O</h2>
+
+        <div id="iosList" cdkDropList #iosList="cdkDropList" [cdkDropListData]="availableIOs"
+            [cdkDropListConnectedTo]="[outputsList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let io of availableIOs" [id]="io.id" cdkDrag>
+                {{io.name}}</div>
+        </div>
+    </div>
+
+    <div class="example-container col">
+        <h2>Inputs</h2>
+
+        <div id="outputsList" cdkDropList #outputsList="cdkDropList" [cdkDropListData]="outputs"
+            [cdkDropListConnectedTo]="[iosList]" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let output of outputs" [id]="output.id" cdkDrag>
+                {{output.ioDetails.name}}</div>
+        </div>
+    </div>
+
+</div>

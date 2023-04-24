@@ -1,0 +1,72 @@
+<div  accessControl moduleType="Process" subModuleType="Map" accessType="read">
+    <!-- Navigation between parents and children process bar -->
+<div class="border border-primary rounded" style="margin-top: 10px;">
+    <!-- Home button - Always visible to get to the root map screen -->
+    <button class="btn btn-link" [routerLink]="['/processes/map', 0]">Home</button>
+
+    <!-- Navigation links that gets displayed once we get past the firstparent process -->
+    <button class="btn btn-link" *ngFor="let parent of currentParent?.parents"
+        [routerLink]="['/processes/map',parent?.id]">{{ parent?.title}} </button>
+
+    <!-- Title of the processes parent that are currently being displayed -->
+    <span>{{ currentParent?.title }}</span>
+</div>
+
+<div class="my-2 ml-3">
+    <!-- Add new process button -->
+    <div accessControl moduleType="Process" subModuleType="Map" accessType="create">
+    
+        <button class="btn btn-primary rounded-circle shadow" (click)="onCreate()" data-toggle="tooltip" data-placement="top" title="Add a new element">+</button>
+       
+    </div>
+ <br>   
+<mat-card class="shadow p-3 mb-5 bg-white rounded">
+    <!-- Process cards container -->
+    <div class="scrolling-container ">
+        <!-- <div *ngIf="processes?.length > 0" class="row p-4 d-flex justify-content-between"> -->
+        <div class="row p-4 d-flex justify-content-between">
+            <ng-container *ngFor="let process of processes; let i = index">
+                <div class="card rounded mb-3 col-12 col-sm-6 col-md-6 col-lg-4" style="width: 31%;">
+
+                    <!-- Card title -->
+                    <h5 class="card-title noselect p-3" [ngClass]="{
+                    'bg-secondary': process?.status=== 'Empty',
+                    'bg-warning': process?.status === 'In progress',
+                    'bg-success': process?.status === 'Complete',
+                    'bg-info' : lastLevel === true,
+                    'notLast' : lastLevel === false
+                }" (dblclick)="onProcessChoice(process?.id)">{{ process?.title}}</h5>
+
+                    <!-- Children processes count -->
+                    <div class="card-body">
+                        <div *ngFor="let type of processTypes; let i = index">
+                            <span class="card-text"
+                                *ngIf="i !== 0 && i !== 1 && i > currentDepth">{{ process?.childrenCount[type?.depth] || "0"}}
+                                {{ type?.name}}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row" >
+                        <button class="col btn btn-link" (click)="onEdit(process?.id)">EDIT</button>
+                        <button class="col btn btn-link" (click)="onMerge(process?.id)">MERGE</button>
+                        <button class="col btn btn-link "  [ngClass]="{'lastLevelVisibility': lastLevel === true}"  (click)="onChangeStatus(process?.id)">STATUS</button>
+                        <!-- <button class="col btn btn-link " (click)="onChangeStatus(process?.id)">STATUS</button> -->
+                    </div>  
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</mat-card>
+
+    <div id="map-legend" class="d-flex justify-content-around" [ngClass]="{'lastLevelVisibility': lastLevel === true}">
+        <span class="status-key bg-secondary"></span>
+        <span>Empty</span>
+        <span class="status-key bg-warning"></span>
+        <span>In progress</span>
+        <span class="status-key bg-success"></span>
+        <span>Complete</span>
+    </div>
+
+</div>
+
+</div>

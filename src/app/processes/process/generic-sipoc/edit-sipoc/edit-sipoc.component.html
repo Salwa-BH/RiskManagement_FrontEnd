@@ -1,0 +1,110 @@
+<h1 mat-dialog-title>Add a new SIPOC element</h1>
+<mat-dialog-content [formGroup]="sipocForm">
+
+    <mat-form-field class="full-width">
+        <mat-label>Nature of the layer</mat-label>
+        <mat-select formControlName="processType">
+            <mat-option *ngFor="let type of processTypes" [value]="type?.id">{{ type?.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Name of the layer</mat-label>
+        <mat-select formControlName="process">
+            <mat-option *ngFor="let process of filteredProcesses" [value]="process?.id">{{ process?.title }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div>
+        <br>
+        <!-- Suppliers selection -->
+        <mat-form-field class="half-width">
+            <mat-label>Supplier</mat-label>
+            <mat-select formControlName="suppliers" [value]="suppliers_selected" (ngModelChange)="changeSupplier($event)" multiple>
+                <input class="searchField" [(ngModel)]="name_supplier_search" 
+                placeholder="Search ..." (keyup)="onKeyChangePlayer($event.target.value)">
+                <mat-option  *ngFor="let player of filteredPlayers" [value]="player?.id">{{ player?.short_name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Customers selection -->
+        <mat-form-field class="half-width float-right">
+            <mat-label>Customer</mat-label>
+            <mat-select formControlName="customers" multiple>
+                <mat-option *ngFor="let player of players" [value]="player?.id">{{ player?.short_name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+<!-- 
+    <div style="width:50%">
+        <form [formGroup]="dropDownForm">
+            <div [formGroup]="dropDownForm.controls['myItems']" >
+                <ng-multiselect-dropdown
+                    [settings]="dropdownSettings2"
+                    [data]="dropdownList"
+                    formControlName="myItems">
+                </ng-multiselect-dropdown>
+            </div>
+        </form>
+      </div>
+
+      <div style="width:50%">
+        <form [formGroup]="dropDownFormSuppliers">
+          <ng-multiselect-dropdown
+             [settings]="dropdownSettings"
+             [data]="players"
+             formControlName="mySuppliers">
+          </ng-multiselect-dropdown>
+        </form>
+      </div>
+
+    <div>
+        <form [formGroup]="dropDownFormSuppliers">
+            <ng-multiselect-dropdown 
+                [placeholder]="'Suppliers'"
+                [settings]="dropdownSettings"
+                [data]="players"
+                [(ngModel)]="supplier_players"
+                (onSelect)="onSupplierSelect($event)"
+            >
+            </ng-multiselect-dropdown>
+        </form>
+<br>
+      <ng-multiselect-dropdown 
+        [placeholder]="'Customers'"
+        [settings]="dropdownSettings"
+        [data]="players"
+        [(ngModel)]="players"
+        (onSelect)="onCustomerSelect($event)"
+      >
+      </ng-multiselect-dropdown>
+      
+    </div>
+     -->
+    <!-- I/Os selection -->
+    <div>
+        <!-- Inputs selection -->
+        <mat-form-field class="half-width">
+            <mat-label>Input</mat-label>
+            <mat-select formControlName="inputs" multiple>
+                <mat-option *ngFor="let io of ios" [value]="io?.id">{{ io?.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Outputs selection -->
+        <mat-form-field class="half-width float-right">
+            <mat-label>Output</mat-label>
+            <mat-select formControlName="outputs" multiple>
+                <mat-option *ngFor="let io of ios" [value]="io?.id">{{ io?.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onCloseDialog()" class="btn btn-outline-secondary">Cancel</button>
+
+    <button mat-raised-button (click)="onEditSipoc()" cdkFocusInitial class="btn btn-primary ml-1">Save</button>
+</div>

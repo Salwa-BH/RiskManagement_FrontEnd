@@ -1,0 +1,57 @@
+<br>
+<mat-card>
+  <!-- <h1 mat-dialog-title>Processes Status </h1> -->
+    <div class="btn-group" style="height: 40px;" >
+        <button style=" background-color: #2d545e;" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Export
+        </button>
+        <div class="dropdown-menu" style="background-color: #E69513;">
+          <a class="dropdown-item" (click)="exportexcel(statusP)"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Excel</a>
+          <a class="dropdown-item" (click)="generatePdf('Processes Status ')"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Pdf</a>
+          <a class="dropdown-item" (click)="exportcsv(statusP)"><mat-icon class="export_icon" matSuffix>import_export</mat-icon>Csv</a>
+        </div>
+      </div>
+
+
+
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th scope="col" class="col-8">Name</th>
+            <th scope="col" class="col-4">Edition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let status of statusP | paginate: { itemsPerPage: pageSize,currentPage: p }"  >
+            <td class="col-8">{{ status?.name}}</td>
+        
+            <td class="col-2 col-sm-1">
+                <button [id]="status?.id" class="btn btn-primary btn-sm" (click)="edit(status?.id)"style="background-color: #2d545e;"><i
+                        [id]="status?.id" class="fas fa-pen fa-sm"></i></button>
+            </td>
+            <td class="col-2 col-sm-1">  
+                <button [id]="status?.id" class="btn btn-danger btn-sm ml-2" (click)="delete(status?.id)" style="background-color: #CC9752;"><i
+                [id]="status?.id" class="fas fa-trash fa-sm"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls  class="d-flex justify-content-center" previousLabel="Prev" nextLabel="Next" responsive="true" (pageChange)="handlePageChange($event)"></pagination-controls>
+
+<div  class="d-flex justify-content-end">
+    Items per Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+
+
+<hr>
+</mat-card>
+<br>
+<div class="text-center">
+    <button class="btn btn-success" (click)="create()" style="background-color: #CC9752;">Create new status</button>
+</div>

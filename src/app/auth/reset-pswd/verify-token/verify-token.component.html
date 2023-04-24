@@ -1,0 +1,43 @@
+<div class="container ">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+  
+      <div class="col-xl-10 col-lg-6 col-md-6">
+  
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-3 d-none d-lg-block"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4 title">Reset your password for Risk Tracer!</h1>
+                  </div>
+                    <!-- Form for verifying token -->
+                  <form class="user " #authFormVerify="ngForm" (ngSubmit)="onSubmit(authFormVerify)">
+                    
+                    <div class="form-group input" >
+                        <input type="text" name="token" id="token" class="form-control form-control-user" 
+                        ngModel name="token"  placeholder="Token" autofocus required>
+                    </div>
+                    
+                    <button type="submit" [disabled]="!authFormVerify.valid"
+                            class="btn btn-info">Verify token</button>
+                    <hr>
+                  </form>
+
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="forgot-password">Return</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>

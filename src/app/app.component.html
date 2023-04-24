@@ -1,0 +1,16 @@
+<!-- Hide bars if before authentification -->
+    <nav  *ngIf="visibility"  class="navbar navbar-light" style="background:#E69513; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19); ">
+      <app-header></app-header>
+    </nav>
+    <div class="container-fluid"> 
+      <div class="row">
+        <div *ngIf="visibility" class="col-md-4 col-lg-3 col-xl-2"><app-sidebar></app-sidebar></div>
+
+        <!-- set class up to visibility -->
+        <div [ngClass] =" {'col-12 col-sm-12 col-md-8 col-lg-9 col-xl-10' : visibility,'col-lg-12' : !visibility}" >
+              <router-outlet></router-outlet>
+         </div>
+        
+        <!-- Show bars if after authentification -->
+      </div>
+    </div>  
